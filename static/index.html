@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Excel Pro | Advanced Data Extraction</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>PDF to Excel</h1>
+        <p class="subtitle">Extract structured data from Purchase Orders with precision. Multi-file support included.</p>
+        
+        <div class="upload-card">
+            <div id="drop-zone" class="drop-zone">
+                <div class="icon-wrapper">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                </div>
+                <div>
+                    <p style="font-weight: 600; margin-bottom: 0.5rem;">Click to upload or drag and drop</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Maximum 100 PDF files at once</p>
+                </div>
+                <input type="file" id="file-input" multiple accept=".pdf" style="display: none;">
+            </div>
+
+            <div id="file-list" class="file-list"></div>
+
+            <button id="convert-btn" class="btn-convert" disabled>
+                <div class="spinner"></div>
+                <span class="btn-text">Convert to Excel</span>
+            </button>
+
+            <div id="status-message" class="status-message"></div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
