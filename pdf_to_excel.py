@@ -397,15 +397,29 @@ def style_sheet(ws):
 
 def build_excel(pdf_files, output_path="extracted_data.xlsx"):
     all_records = []
+    failed_files = []
 
     for pdf_path in pdf_files:
         if not os.path.isfile(pdf_path):
             print(f"  [SKIP] Not found: {pdf_path}")
             continue
-        print(f"  Processing: {Path(pdf_path).name}")
-        rec = extract_po_data(pdf_path)
-        all_records.append(rec)
-        print(f"    ✓ Customer: {rec['Customer Name']}  |  PO: {rec['PO Number']}  |  Model: {rec['Model']}  |  Qty: {rec['Quantity']}")
+        
+        filename = Path(pdf_path).name
+        print(f"  Processing: {filename}")
+        
+        try:
+            rec = extract_po_data(pdf_path)
+            all_records.append(rec)
+            print(f"    ✓ Customer: {rec['Customer Name']}  |  PO: {rec['PO Number']}  |  Model: {rec['Model']}  |  Qty: {rec['Quantity']}")
+        except Exception as e:
+            print(f"  [ERROR] Failed to process {filename}: {e}")
+            failed_files.append(filename)
+
+    if failed_files:
+        print("\n⚠️ The following files failed to process:")
+        for f in failed_files:
+            print(f"  - {f}")
+        print(f"\nTotal failures: {len(failed_files)}")
 
     if not all_records:
         print("No data extracted.")
